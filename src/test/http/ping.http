@@ -1,0 +1,5 @@
+### 그냥 실행
+GET http://localhost:8080/api/ping
+
+### 환경변수 설정
+GET {{host}}/api/ping
