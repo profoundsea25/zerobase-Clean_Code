@@ -1,6 +1,5 @@
 package study.houseutils.constant;
 
-
 import lombok.AllArgsConstructor;
 
 @AllArgsConstructor

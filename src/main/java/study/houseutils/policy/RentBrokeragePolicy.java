@@ -1,11 +1,10 @@
 package study.houseutils.policy;
 
-/*
-*
-* 임대차일 때 중개수수료를 계산해주는 클래스
-*
-* */
-
+/**
+ * @author profoundsea25
+ *
+ * 임대차일 때 중개수수료를 계산해주는 클래스
+ */
 public class RentBrokeragePolicy implements BrokeragePolicy {
 
     public BrokerageRule createBrokerageRule(Long price) {
