@@ -1,5 +1,6 @@
 package study.houseutils.controller;
 
+import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -7,6 +8,7 @@ import org.springframework.web.bind.annotation.RestController;
 import study.houseutils.constant.ActionType;
 import study.houseutils.policy.BrokeragePolicy;
 import study.houseutils.policy.BrokeragePolicyFactory;
+import study.houseutils.service.ApartmentService;
 
 /**
  * @author profoundsea25
@@ -14,7 +16,10 @@ import study.houseutils.policy.BrokeragePolicyFactory;
  * 중개 수수료가 얼마인지 조회하는 컨트롤러
  */
 @RestController
+@AllArgsConstructor
 public class BrokerageQueryController {
+
+    private final ApartmentService apartmentService;
 
     @GetMapping("/api/calc/brokerage")
     public Long calcBrokerage(@RequestParam ActionType actionType,
@@ -28,7 +33,6 @@ public class BrokerageQueryController {
     public long calcBrokerageByApartmentId(@PathVariable Long apartmentId,
                                            @RequestParam ActionType actionType) {
         BrokeragePolicy policy = BrokeragePolicyFactory.of(actionType);
-        Long price = 0L; // TODO : apartmentId -> price
-        return policy.calculate(price);
+        return policy.calculate(apartmentService.getPriceOrThrow(apartmentId));
     }
 }
